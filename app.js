@@ -12,7 +12,12 @@ app.get('/foods', function (req, res, next) {
      });   
     });
 
-var server = app.listen(4000, function () {
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 4000;
+}   
+
+var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log("Now listening at http://%s:%s", host, port);
