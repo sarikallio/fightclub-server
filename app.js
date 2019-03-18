@@ -5,7 +5,7 @@ var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // support json encoded bodies
 var users = require('./foods');
 
-app.get('/foods', function (req, res, next) {
+app.get('/', function (req, res, next) {
     users.users()    
      .then(response => {    
        res.json(response.rows);    
