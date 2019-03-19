@@ -6,20 +6,22 @@ var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(cors());
 
-var users = require('./foods');
-
-// var foods = [{name: 'Pizza'}, {name: 'Burger'}]
+var foods = require('./foods');
+var todo = require('./todo');
 
 app.get('/foods', function (req, res, next) {
-    users.users()    
+    foods.foods()    
      .then(response => {    
        res.json(response.rows);    
      });   
     });
 
-// app.get('/', function(req, res, next) {
-//   res.json(foods);
-// });
+app.get('/todo', function (req, res, next) {
+  todo.todo()    
+    .then(response => {    
+      res.json(response.rows);    
+    });   
+  });
 
 let port = process.env.PORT;
 if (port == null || port == "") {

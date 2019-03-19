@@ -8,10 +8,10 @@ const conopts = {
 
 const pool = new Pool(conopts);
 
-const foods = () => {
+const todo = () => {
     return pool.connect()
         .then(client => {
-           const sql = 'SELECT name FROM foods';
+           const sql = 'SELECT name FROM todo';
             return client.query(sql)
                 .then(res => {
                     client.release();
@@ -24,4 +24,4 @@ const foods = () => {
         })
    }
 
-   module.exports = { foods };
+   module.exports = { todo };
