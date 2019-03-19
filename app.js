@@ -10,7 +10,7 @@ var users = require('./foods');
 
 // var foods = [{name: 'Pizza'}, {name: 'Burger'}]
 
-app.get('/', function (req, res, next) {
+app.get('/foods', function (req, res, next) {
     users.users()    
      .then(response => {    
        res.json(response.rows);    
