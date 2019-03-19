@@ -5,18 +5,18 @@ var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // support json encoded bodies
 var users = require('./foods');
 
-var foods = [{name: 'Pizza'}, {name: 'Burger'}]
+// var foods = [{name: 'Pizza'}, {name: 'Burger'}]
 
-// app.get('/', function (req, res, next) {
-//     users.users()    
-//      .then(response => {    
-//        res.json(response.rows);    
-//      });   
-//     });
+app.get('/', function (req, res, next) {
+    users.users()    
+     .then(response => {    
+       res.json(response.rows);    
+     });   
+    });
 
-app.get('/', function(req, res, next) {
-  res.json(foods);
-});
+// app.get('/', function(req, res, next) {
+//   res.json(foods);
+// });
 
 let port = process.env.PORT;
 if (port == null || port == "") {
