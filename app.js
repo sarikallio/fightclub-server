@@ -1,8 +1,11 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
 var bodyParser = require('body-parser');
 var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // support json encoded bodies
+app.use(cors());
+
 var users = require('./foods');
 
 // var foods = [{name: 'Pizza'}, {name: 'Burger'}]
