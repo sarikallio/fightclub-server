@@ -1,9 +1,9 @@
 const Pool = require('pg').Pool;
 const conopts = {
-    user: DATABASE_URL.user,
-    password: DATABASE_URL.password,
-    host: DATABASE_URL.host,
-    database: DATABASE_URL.database
+    user: process.env.DATABASE_URL,
+    password: process.env.DATABASE_URL,
+    host: process.env.DATABASE_URL,
+    database: process.env.DATABASE_URL
 }
 
 const pool = new Pool(conopts);
