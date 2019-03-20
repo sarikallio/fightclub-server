@@ -1,12 +1,12 @@
 const Pool = require('pg').Pool;
-// const conopts = {
-//     user: process.env.user,
-//     password: process.env.password,
-//     host: process.env.host,
-//     database: process.env.database
-// }
+const conopts = {
+    user: DATABASE_URL.user,
+    password: DATABASE_URL.password,
+    host: DATABASE_URL.host,
+    database: DATABASE_URL.database
+}
 
-const pool = new Pool(DATABASE_URL);
+const pool = new Pool(conopts);
 
 const foods = () => {
     return pool.connect()
