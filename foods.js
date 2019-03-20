@@ -12,7 +12,7 @@ const pool = new Pool(conopts);
 const foods = () => {
     return pool.connect()
         .then(client => {
-           const sql = 'SELECT name FROM foods';
+           const sql = 'SELECT name, emoji FROM foods';
             return client.query(sql)
                 .then(res => {
                     client.release();
