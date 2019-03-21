@@ -6,7 +6,6 @@ const conopts = {
     database: process.env.database_database
 }
 
-
 const pool = new Pool(conopts);
 
 const todo = () => {
