@@ -16,6 +16,10 @@ app.get('/foods', function (req, res, next) {
      .then(response => {    
        res.json(response.rows);    
      });   
+     counter.counter()
+     .then(response => {
+       res.json(response.rows);
+     })
     });
 
 app.get('/counter', function (req, res, next) {
