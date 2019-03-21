@@ -10,6 +10,7 @@ app.use(cors());
 var foods = require('./foods');
 var todo = require('./todo');
 var counter = require('./counter');
+var fights = require('./fights');
 
 app.get('/foods', function (req, res, next) {
     foods.foods()    
@@ -22,8 +23,8 @@ app.get('/foods', function (req, res, next) {
      })
     });
 
-app.get('/counter', function (req, res, next) {
-  counter.counter()    
+app.get('/fights', function (req, res, next) {
+  fights.fights()    
     .then(response => {    
       res.json(response.rows);    
     });   
