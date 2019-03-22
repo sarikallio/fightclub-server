@@ -38,9 +38,8 @@ app.get('/feedback', function (req, res, next) {
   });
 
 app.post('/feedback', function (req,res, next){
-  let mes = req.body;
   console.log("Tässä tulee req.body: ", req.body);
-  feedback.newMessage(mes)
+  feedback.newMessage(req.body)
   .then(resp=>{
       res.send(resp);
   })
