@@ -38,9 +38,9 @@ app.get('/feedback', function (req, res, next) {
   });
 
 app.post('/feedback', function (req,res, next){
-  let mes = req.body;
-  console.log(mes);
-  feedback.newMessage(mes)
+  let message = req.body;
+  console.log(message);
+  feedback.newMessage(message)
   .then(resp=>{
       res.send(resp);
   })
