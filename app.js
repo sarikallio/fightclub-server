@@ -8,9 +8,9 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(cors());
 
 var foods = require('./foods');
-var todo = require('./todo');
 var counter = require('./counter');
 var fights = require('./fights');
+var feedback = require('./feedback');
 
 app.get('/foods', function (req, res, next) {
     foods.foods()    
@@ -30,8 +30,8 @@ app.get('/fights', function (req, res, next) {
     });   
   });
 
-app.get('/todo', function (req, res, next) {
-  todo.todo()    
+app.get('/feedback', function (req, res, next) {
+  feedback.feedback()    
     .then(response => {    
       res.json(response.rows);    
     });   

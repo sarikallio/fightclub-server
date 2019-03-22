@@ -6,13 +6,14 @@ const conopts = {
     database: process.env.database_database
 }
 
+
 const pool = new Pool(conopts);
 
-const todo = () => {
+const feedback = () => {
     return pool.connect()
         .then(client => {
-           const sql = 'SELECT name FROM todo';
-            return client.query(sql)
+           const messages = 'SELECT username, message, created_at, created_on FROM feedback';
+            return client.query(messages)
                 .then(res => {
                     client.release();
                     return res;
@@ -24,4 +25,4 @@ const todo = () => {
         })
    }
 
-   module.exports = { todo };
+   module.exports = { feedback };
