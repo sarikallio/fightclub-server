@@ -25,4 +25,45 @@ const feedback = () => {
         })
    }
 
-   module.exports = { feedback };
+const newMessage = () => {
+return pool.connect()
+    .then(client => {
+        const newMessages = 'INSERT INTO feedback (username, message) values ';
+        return client.query(newMessages)
+            .then(res => {
+                client.release();
+                return res;
+            })
+            .catch(err => {
+                client.release();
+                console.error(err);
+            });
+    })
+}
+
+function newMessage(mes){
+    console.log(mes);
+    return pool.connect()
+    .then(client=>{
+        let value = mes.message;
+        let sql = "insert into feedback (username, message) values ($1, $2)";
+        return client.query(sql, value)
+        // .then(res=>{
+        //     let values2 = [thread.topic];
+        //     let sql2 = "select viestiketju_id from viestiketjut where viestiketjun_otsikko=$1";
+        //     return client.query(sql2, values2)
+        //     .then(res=>{
+        //         console.log(res);
+        //         let mesValues = [thread.alias, thread.message, 2, res.rows[0].viestiketju_id];
+        //         let mesSql = "insert into viestit(nimimerkki, viestisisalto, kayttaja_id, viestiketju_id) values ($1, $2, $3, $4)";
+        //         return client.query(mesSql, mesValues)
+                .then(resp=>{
+                    client.release();
+                    return resp;
+            // })
+        // })
+        })
+    })
+}
+
+module.exports = { feedback, newMessage };
