@@ -23,6 +23,18 @@ app.get('/foods', function (req, res, next) {
      })
     });
 
+app.post('/foods', function (req, res, next){
+  console.log("Req.body foods: ", req.body);
+  foods.newFood(req.body)
+  .then(resp=>{
+      res.send(resp);
+  })
+  .catch(err=>{
+      console.error(err);
+      res.status(400).send(err);
+  })
+})
+
 app.get('/fights', function (req, res, next) {
   fights.fights()    
     .then(response => {    
@@ -38,7 +50,7 @@ app.get('/feedback', function (req, res, next) {
   });
 
 app.post('/feedback', function (req, res, next){
-  console.log("Req.body: ", req.body);
+  console.log("Req.body feedback: ", req.body);
   feedback.newMessage(req.body)
   .then(resp=>{
       res.send(resp);
@@ -47,7 +59,6 @@ app.post('/feedback', function (req, res, next){
       console.error(err);
       res.status(400).send(err);
   })
-
 })
 
 let port = process.env.PORT;

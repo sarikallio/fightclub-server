@@ -25,4 +25,17 @@ const foods = () => {
         })
    }
 
-   module.exports = { foods };
+function newFood(newF){
+return pool.connect()
+.then(client=>{
+    let value = [newF.name, newF.emoji];
+    let sql = "INSERT INTO foods (name, emoji) VALUES ($1, $2)";
+    return client.query(sql, value)
+            .then(resp=>{
+                client.release();
+                return resp;
+    })
+})
+}
+
+   module.exports = { foods, newFood };
