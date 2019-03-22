@@ -42,11 +42,11 @@ const feedback = () => {
 // }
 
 function newMessage(mes){
-    console.log(mes);
+    console.log("Tässä tulee newMessage: ", mes);
     return pool.connect()
     .then(client=>{
         let value = [mes.message];
-        let sql = "insert into feedback (username, message) values ('Anna Malli', 'HEIPPULI')";
+        let sql = "INSERT INTO feedback (username, message) VALUES ($1, $2)";
         return client.query(sql, value)
         // .then(res=>{
         //     let values2 = [thread.topic];
