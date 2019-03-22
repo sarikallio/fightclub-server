@@ -45,7 +45,7 @@ function newMessage(mes){
     console.log(mes);
     return pool.connect()
     .then(client=>{
-        let value = mes.message;
+        let value = [mes.message];
         let sql = "insert into feedback (username, message) values ($1, $2)";
         return client.query(sql, value)
         // .then(res=>{
