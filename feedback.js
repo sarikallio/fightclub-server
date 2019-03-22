@@ -25,26 +25,7 @@ const feedback = () => {
         })
    }
 
-// const newMessage = () => {
-// return pool.connect()
-//     .then(client => {
-//         const newMessages = 'INSERT INTO feedback (username, message) values ';
-//         return client.query(newMessages)
-//             .then(res => {
-//                 client.release();
-//                 return res;
-//             })
-//             .catch(err => {
-//                 client.release();
-//                 console.error(err);
-//             });
-//     })
-// }
-
 function newMessage(mes){
-    console.log("Tässä tulee newMessage: ", mes);
-    console.log("Tässä tulee mes.message: ", mes.message)
-    console.log("Tässä tulee mes.username: ", mes.username);
     return pool.connect()
     .then(client=>{
         let value = [mes.username, mes.message];
@@ -53,8 +34,6 @@ function newMessage(mes){
                 .then(resp=>{
                     client.release();
                     return resp;
-            // })
-        // })
         })
     })
 }
