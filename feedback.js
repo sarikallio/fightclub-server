@@ -43,6 +43,7 @@ const feedback = () => {
 
 function newMessage(mes){
     console.log("Tässä tulee newMessage: ", mes);
+    console.log("Tässä tulee mes.message: ", mes.message)
     return pool.connect()
     .then(client=>{
         let value = [mes.message];
