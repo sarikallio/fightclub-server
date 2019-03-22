@@ -46,7 +46,7 @@ function newMessage(mes){
     return pool.connect()
     .then(client=>{
         let value = [mes.message];
-        let sql = "insert into feedback (username, message) values ($1, $2)";
+        let sql = "insert into feedback (username, message) values ('Anna Malli', 'HEIPPULI')";
         return client.query(sql, value)
         // .then(res=>{
         //     let values2 = [thread.topic];
