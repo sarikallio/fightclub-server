@@ -50,15 +50,6 @@ function newMessage(mes){
         let value = [mes.username, mes.message];
         let sql = "INSERT INTO feedback (username, message) VALUES ($1, $2)";
         return client.query(sql, value)
-        // .then(res=>{
-        //     let values2 = [thread.topic];
-        //     let sql2 = "select viestiketju_id from viestiketjut where viestiketjun_otsikko=$1";
-        //     return client.query(sql2, values2)
-        //     .then(res=>{
-        //         console.log(res);
-        //         let mesValues = [thread.alias, thread.message, 2, res.rows[0].viestiketju_id];
-        //         let mesSql = "insert into viestit(nimimerkki, viestisisalto, kayttaja_id, viestiketju_id) values ($1, $2, $3, $4)";
-        //         return client.query(mesSql, mesValues)
                 .then(resp=>{
                     client.release();
                     return resp;
