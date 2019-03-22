@@ -25,21 +25,21 @@ const feedback = () => {
         })
    }
 
-const newMessage = () => {
-return pool.connect()
-    .then(client => {
-        const newMessages = 'INSERT INTO feedback (username, message) values ';
-        return client.query(newMessages)
-            .then(res => {
-                client.release();
-                return res;
-            })
-            .catch(err => {
-                client.release();
-                console.error(err);
-            });
-    })
-}
+// const newMessage = () => {
+// return pool.connect()
+//     .then(client => {
+//         const newMessages = 'INSERT INTO feedback (username, message) values ';
+//         return client.query(newMessages)
+//             .then(res => {
+//                 client.release();
+//                 return res;
+//             })
+//             .catch(err => {
+//                 client.release();
+//                 console.error(err);
+//             });
+//     })
+// }
 
 function newMessage(mes){
     console.log(mes);
