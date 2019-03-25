@@ -64,25 +64,25 @@ app.delete('/feedback', function(req, res){
   })
 });
 
-// app.delete('/feedback/:id', function(req, res, next){
-//   services.deleteOne(req.params.id, function(deletecount, errmsg) {
-//       if (!errmsg)
-//         res.send(JSON.stringify({deleted: deletecount}));
-//       else
-//         res.status(400).send(JSON.stringify({error: errmsg}));
-//   });
-// })
+app.delete('/feedback/:id', function(req, res, next){
+  services.deleteOne(req.params.id, function(deletecount, errmsg) {
+      if (!errmsg)
+        res.send(JSON.stringify({deleted: deletecount}));
+      else
+        res.status(400).send(JSON.stringify({error: errmsg}));
+  });
+})
 
-app.delete('/feedback/:id', function(req, res) {
-  for(var message in feedback) { 
-    if(feedcback[message].id == req.params.id) {
-      feedback.splice(message, 1);
-      res.json("{msg: 'message removed'}"); 
-      return; 
-      } 
-    }
-  res.json("{'msg': 'Error, no such message!'}");
-});
+// app.delete('/feedback', id, function(req, res) {
+//   for(var message in feedback) { 
+//     if(feedcback[message].id == req.params.id) {
+//       feedback.splice(message, 1);
+//       res.json("{msg: 'message removed'}"); 
+//       return; 
+//       } 
+//     }
+//   res.json("{'msg': 'Error, no such message!'}");
+// });
 
 let port = process.env.PORT;
 if (port == null || port == "") {
