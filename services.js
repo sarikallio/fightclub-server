@@ -112,18 +112,6 @@ function deleteAll() {
     })
 }
 
-// function deleteOne(id) {
-//     return pool.connect()
-//     .then(client=>{
-//         let sql = "DELETE FROM feedback WHERE id=?";
-//         return client.query(sql, id)
-//         .then(resp=>{
-//             client.release();
-//             return resp;
-//         })
-//     })
-// }
-
 const deleteOne = (id) => {
     return pool.connect()
         .then(client => {
