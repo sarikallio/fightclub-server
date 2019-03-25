@@ -75,6 +75,7 @@ app.delete('/feedback', function(req, res){
 
 app.delete('/feedback/:id', (req, res, next) => {
   const id = req.params.id; 
+  console.log("id: ", id);
   services.deleteOne(id)
     .then(resolved => {
       res.send('Deleted ' + resolved.rowCount + ' rows');
