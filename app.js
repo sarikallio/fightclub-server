@@ -7,8 +7,7 @@ var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(cors());
 
-var foods = require('./services');
-var counter = require('./services');
+var services = require('./services');
 var fights = require('./fights');
 var feedback = require('./feedback');
 
