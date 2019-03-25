@@ -58,6 +58,12 @@ app.post('/feedback', function (req, res, next){
   })
 })
 
+app.delete('/feedback', function(req, res){
+  services.deleteAll(function(deletecount) {
+    res.send(JSON.stringify({deletedcount: deletecount}));    
+  })
+});
+
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 4000;

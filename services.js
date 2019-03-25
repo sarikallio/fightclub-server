@@ -100,4 +100,16 @@ function newMessage(mes){
     })
 }
 
-   module.exports = { foods, newFood, counter, fights, feedback, newMessage };
+function deleteAll() {
+    return pool.connect()
+    .then(client=>{
+        let sql = "DELETE FROM feedback";
+        return client.query(sql)
+        .then(resp=>{
+            client.release();
+            return resp;
+        })
+    })
+}
+
+   module.exports = { foods, newFood, counter, fights, feedback, newMessage, deleteAll };
