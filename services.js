@@ -74,7 +74,7 @@ const fights = () => {
    const feedback = () => {
     return pool.connect()
         .then(client => {
-           const messages = 'SELECT username, message, created_at, created_on FROM feedback';
+           const messages = 'SELECT id, username, message, created_at, created_on FROM feedback';
             return client.query(messages)
                 .then(res => {
                     client.release();
