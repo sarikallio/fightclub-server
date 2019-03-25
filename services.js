@@ -112,16 +112,32 @@ function deleteAll() {
     })
 }
 
-function deleteOne(id) {
+// function deleteOne(id) {
+//     return pool.connect()
+//     .then(client=>{
+//         let sql = "DELETE FROM feedback WHERE id=?";
+//         return client.query(sql, id)
+//         .then(resp=>{
+//             client.release();
+//             return resp;
+//         })
+//     })
+// }
+
+const deleteOne = (id) => {
     return pool.connect()
-    .then(client=>{
-        let sql = "DELETE FROM feedback WHERE id=?";
-        return client.query(sql, id)
-        .then(resp=>{
-            client.release();
-            return resp;
+        .then(client => {
+            const sql = `DELETE FROM feedback WHERE id ILIKE $1;`;
+            return client.query(sql, [id])
+                .then(res => {
+                    client.release();
+                    return res;
+                })
+                .catch(err => {
+                    client.release();
+                    console.error(err);
+                });
         })
-    })
-}
+  }
 
 module.exports = { foods, newFood, counter, fights, feedback, newMessage, deleteAll, deleteOne };

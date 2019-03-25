@@ -64,14 +64,22 @@ app.delete('/feedback', function(req, res){
   })
 });
 
-app.delete('/feedback/:id', function(req, res, next){
-  services.deleteOne(req.params.id, function(deletecount, errmsg) {
-      if (!errmsg)
-        res.send(JSON.stringify({deleted: deletecount}));
-      else
-        res.status(400).send(JSON.stringify({error: errmsg}));
+// app.delete('/feedback/:id', function(req, res, next){
+//   services.deleteOne(req.params.id, function(deletecount, errmsg) {
+//       if (!errmsg)
+//         res.send(JSON.stringify({deleted: deletecount}));
+//       else
+//         res.status(400).send(JSON.stringify({error: errmsg}));
+//   });
+// })
+
+router.delete('/feedback/:id', (req, res, next) => {
+  const id = req.params.id; 
+  services.deleteOne(id)
+    .then(resolved => {
+      res.send('deleted ' + resolved.rowCount + ' rows');
+    })
   });
-})
 
 // app.delete('/feedback', id, function(req, res) {
 //   for(var message in feedback) { 
