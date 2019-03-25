@@ -55,4 +55,20 @@ const counter= () => {
     })
 }
 
-   module.exports = { foods, newFood, counter };
+const fights = () => {
+    return pool.connect()
+        .then(client => {
+           const sql = 'SELECT fights FROM counter';
+            return client.query(sql)
+                .then(res => {
+                    client.release();
+                    return res;
+                })
+                .catch(err => {
+                    client.release();
+                    console.error(err);
+                });
+        })
+   }
+
+   module.exports = { foods, newFood, counter, fights };
