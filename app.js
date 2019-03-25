@@ -64,6 +64,16 @@ app.delete('/feedback', function(req, res){
   })
 });
 
+router.route('/feedback/:id')
+.delete(function(req, res, next){
+  services.deleteOne(req.params.id, function(deletecount, errmsg) {
+      if (!errmsg)
+        res.send(JSON.stringify({deleted: deletecount}));
+      else
+        res.status(400).send(JSON.stringify({error: errmsg}));
+  });
+})
+
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 4000;

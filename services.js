@@ -112,4 +112,16 @@ function deleteAll() {
     })
 }
 
-   module.exports = { foods, newFood, counter, fights, feedback, newMessage, deleteAll };
+function deleteOne() {
+    return pool.connect()
+    .then(client=>{
+        let sql = "DELETE FROM feedback WHERE id=?";
+        return client.query(sql)
+        .then(resp=>{
+            client.release();
+            return resp;
+        })
+    })
+}
+
+module.exports = { foods, newFood, counter, fights, feedback, newMessage, deleteAll, deleteOne };
