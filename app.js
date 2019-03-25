@@ -73,11 +73,11 @@ app.delete('/feedback', function(req, res){
 //   });
 // })
 
-router.delete('/feedback/:id', (req, res, next) => {
+app.delete('/feedback/:id', (req, res, next) => {
   const id = req.params.id; 
   services.deleteOne(id)
     .then(resolved => {
-      res.send('deleted ' + resolved.rowCount + ' rows');
+      res.send('Deleted ' + resolved.rowCount + ' rows');
     })
   });
 
