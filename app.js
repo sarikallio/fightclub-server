@@ -64,8 +64,7 @@ app.delete('/feedback', function(req, res){
   })
 });
 
-router.route('/feedback/:id')
-.delete(function(req, res, next){
+app.delete('/feedback/:id', function(req, res, next){
   services.deleteOne(req.params.id, function(deletecount, errmsg) {
       if (!errmsg)
         res.send(JSON.stringify({deleted: deletecount}));
