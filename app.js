@@ -8,7 +8,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(cors());
 
 var foods = require('./foods');
-var counter = require('./counter');
+var counter = require('./foods');
 var fights = require('./fights');
 var feedback = require('./feedback');
 
@@ -17,7 +17,7 @@ app.get('/foods', function (req, res, next) {
      .then(response => {    
        res.json(response.rows);    
      });   
-     counter.counter()
+     foods.counter()
      .then(response => {
        res.json(response.rows);
      })

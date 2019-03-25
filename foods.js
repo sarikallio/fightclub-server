@@ -38,4 +38,21 @@ return pool.connect()
 })
 }
 
-   module.exports = { foods, newFood };
+
+const counter= () => {
+    return pool.connect()
+    .then(client => {
+        const fights = 'UPDATE counter SET fights=fights+1 WHERE id=1';
+        return client.query(fights)
+        .then(res => {
+            client.release();
+            return res;
+        })
+        .catch(err => {
+            client.release();
+            console.error(err);
+        })
+    })
+}
+
+   module.exports = { foods, newFood, counter };
