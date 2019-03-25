@@ -69,7 +69,22 @@ app.delete('/feedback/:id', (req, res, next) => {
   console.log("id: ", id);
   services.deleteOne(id)
     .then(resolved => {
-      res.send('Deleted ' + resolved.rowCount + ' rows');
+      res.send('Deleted ' + resolved.rowCount + ' rows of comments');
+    })
+  });
+
+app.delete('/foods', function(req, res){
+  services.deleteFoods(function(deletecount) {
+    res.send(JSON.stringify({deletedcount: deletecount}));    
+  })
+});
+
+app.delete('/foods/:id', (req, res, next) => {
+  const id = req.params.id; 
+  console.log("id: ", id);
+  services.deleteOneFood(id)
+    .then(resolved => {
+      res.send('Deleted ' + resolved.rowCount + ' rows of foods');
     })
   });
 

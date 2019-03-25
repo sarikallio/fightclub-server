@@ -128,4 +128,32 @@ const deleteOne = (id) => {
         })
   }
 
-module.exports = { foods, newFood, counter, fights, feedback, newMessage, deleteAll, deleteOne };
+  function deleteFoods() {
+    return pool.connect()
+    .then(client=>{
+        let sql = "DELETE FROM foods";
+        return client.query(sql)
+        .then(resp=>{
+            client.release();
+            return resp;
+        })
+    })
+}
+
+const deleteOneFood = (id) => {
+    return pool.connect()
+        .then(client => {
+            const sql = `DELETE FROM foods WHERE id=$1;`;
+            return client.query(sql, [id])
+                .then(res => {
+                    client.release();
+                    return res;
+                })
+                .catch(err => {
+                    client.release();
+                    console.error(err);
+                });
+        })
+  }
+
+module.exports = { foods, newFood, counter, fights, feedback, newMessage, deleteAll, deleteOne, deleteFoods, deleteOneFood };
