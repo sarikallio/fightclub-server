@@ -73,7 +73,7 @@ app.delete('/feedback', function(req, res){
 //   });
 // })
 
-app.delete('/feedback', function(req, res) {
+app.delete('/feedback/:id', function(req, res) {
   for(var message in feedback) { 
     if(feedcback[message].id == req.params.id) {
       feedback.splice(message, 1);
