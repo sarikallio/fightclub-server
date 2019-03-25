@@ -115,7 +115,7 @@ function deleteAll() {
 function deleteOne() {
     return pool.connect()
     .then(client=>{
-        let sql = "DELETE FROM feedback WHERE id=17";
+        let sql = "DELETE FROM feedback WHERE id=?";
         return client.query(sql)
         .then(resp=>{
             client.release();
