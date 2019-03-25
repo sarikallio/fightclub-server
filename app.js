@@ -7,17 +7,17 @@ var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(cors());
 
-var foods = require('./foods');
-var counter = require('./foods');
+var foods = require('./services');
+var counter = require('./services');
 var fights = require('./fights');
 var feedback = require('./feedback');
 
 app.get('/foods', function (req, res, next) {
-    foods.foods()    
+    services.foods()    
      .then(response => {    
        res.json(response.rows);    
      });   
-     foods.counter()
+     services.counter()
      .then(response => {
        res.json(response.rows);
      })
@@ -25,7 +25,7 @@ app.get('/foods', function (req, res, next) {
 
 app.post('/foods', function (req, res, next){
   console.log("Req.body foods: ", req.body);
-  foods.newFood(req.body)
+  services.newFood(req.body)
   .then(resp=>{
       res.send(resp);
   })
