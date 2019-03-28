@@ -160,7 +160,6 @@ const login = () => {
 return pool.connect()
     .then(client => {
         const sql = 'SELECT username, password FROM admin';
-        console.log("Tässä sql: ", sql);
         return client.query(sql)
             .then(res => {
                 client.release();
