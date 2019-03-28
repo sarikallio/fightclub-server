@@ -29,7 +29,7 @@ function newFood(newF){
 return pool.connect()
 .then(client=>{
     let value = [newF.name, newF.emoji];
-    let sql = "INSERT INTO foods (name, emoji) VALUES ($1, $2)";
+    let sql = 'INSERT INTO foods (name, emoji) VALUES ($1, $2)';
     return client.query(sql, value)
             .then(resp=>{
                 client.release();
@@ -91,7 +91,7 @@ function newMessage(mes){
     return pool.connect()
     .then(client=>{
         let value = [mes.username, mes.message];
-        let sql = "INSERT INTO feedback (username, message) VALUES ($1, $2)";
+        let sql = 'INSERT INTO feedback (username, message) VALUES ($1, $2)';
         return client.query(sql, value)
                 .then(resp=>{
                     client.release();
@@ -103,7 +103,7 @@ function newMessage(mes){
 function deleteAll() {
     return pool.connect()
     .then(client=>{
-        let sql = "DELETE FROM feedback";
+        let sql = 'DELETE FROM feedback';
         return client.query(sql)
         .then(resp=>{
             client.release();
@@ -115,7 +115,7 @@ function deleteAll() {
 const deleteOne = (id) => {
     return pool.connect()
         .then(client => {
-            const sql = `DELETE FROM feedback WHERE id=$1;`;
+            const sql = 'DELETE FROM feedback WHERE id=$1;';
             return client.query(sql, [id])
                 .then(res => {
                     client.release();
@@ -131,7 +131,7 @@ const deleteOne = (id) => {
   function deleteFoods() {
     return pool.connect()
     .then(client=>{
-        let sql = "DELETE FROM foods";
+        let sql = 'DELETE FROM foods';
         return client.query(sql)
         .then(resp=>{
             client.release();
@@ -143,7 +143,7 @@ const deleteOne = (id) => {
 const deleteOneFood = (id) => {
     return pool.connect()
         .then(client => {
-            const sql = `DELETE FROM foods WHERE id=$1;`;
+            const sql = 'DELETE FROM foods WHERE id=$1;';
             return client.query(sql, [id])
                 .then(res => {
                     client.release();

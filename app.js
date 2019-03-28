@@ -6,9 +6,9 @@ var bodyParser = require('body-parser');
 var parser = bodyParser.urlencoded({ extended: true });
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(cors());
-
 var services = require('./services');
 
+//GET all foods and add 1 to the counter
 app.get('/foods', function (req, res, next) {
     services.foods()    
      .then(response => {    
@@ -24,6 +24,7 @@ app.get('/foods', function (req, res, next) {
       })
     })
 
+//Add new food
 app.post('/foods', function (req, res, next){
   console.log("Req.body foods: ", req.body);
   services.newFood(req.body)
@@ -36,6 +37,7 @@ app.post('/foods', function (req, res, next){
   })
 })
 
+//Get the number of fights so far
 app.get('/fights', function (req, res, next) {
   services.fights()    
   .then(response => {    
@@ -47,6 +49,7 @@ app.get('/fights', function (req, res, next) {
     })
   })
 
+//Get all feedback
 app.get('/feedback', function (req, res, next) {
   services.feedback()    
     .then(response => {    
@@ -58,6 +61,7 @@ app.get('/feedback', function (req, res, next) {
     })
   })
 
+// Add new feedback
 app.post('/feedback', function (req, res, next){
   console.log("Req.body feedback: ", req.body);
   services.newMessage(req.body)
@@ -70,12 +74,14 @@ app.post('/feedback', function (req, res, next){
   })
 })
 
+//Delete all feedback
 app.delete('/feedback', function(req, res){
   services.deleteAll(function(deletecount) {
     res.send(JSON.stringify({deletedcount: deletecount}));    
   })
 });
 
+//Delete one feedback
 app.delete('/feedback/:id', (req, res, next) => {
   const id = req.params.id; 
   console.log("id: ", id);
@@ -85,12 +91,14 @@ app.delete('/feedback/:id', (req, res, next) => {
     })
   });
 
+// Delete all food categories
 app.delete('/foods', function(req, res){
   services.deleteFoods(function(deletecount) {
     res.send(JSON.stringify({deletedcount: deletecount}));    
   })
 });
 
+// Delete one category from foods
 app.delete('/foods/:id', (req, res, next) => {
   const id = req.params.id; 
   console.log("id: ", id);
@@ -100,6 +108,7 @@ app.delete('/foods/:id', (req, res, next) => {
     })
   });
 
+//Get all admins from database
 app.get('/login', (req, res, next)=>{
   services.login()
   .then(response => {    
@@ -110,7 +119,8 @@ app.get('/login', (req, res, next)=>{
         res.status(400).send(err);
     })
   })
-  
+
+//Server
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 4000;
