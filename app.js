@@ -17,8 +17,12 @@ app.get('/foods', function (req, res, next) {
      services.counter()
      .then(response => {
        res.json(response.rows);
-     })
-    });
+      })
+      .catch(err=>{
+          console.error(err);
+          res.status(400).send(err);
+      })
+    })
 
 app.post('/foods', function (req, res, next){
   console.log("Req.body foods: ", req.body);
@@ -42,12 +46,17 @@ app.get('/fights', function (req, res, next) {
         res.status(400).send(err);
     })
   })
+
 app.get('/feedback', function (req, res, next) {
   services.feedback()    
     .then(response => {    
       res.json(response.rows);    
-    });   
-  });
+    })
+    .catch(err=>{
+        console.error(err);
+        res.status(400).send(err);
+    })
+  })
 
 app.post('/feedback', function (req, res, next){
   console.log("Req.body feedback: ", req.body);
@@ -95,9 +104,13 @@ app.get('/login', (req, res, next)=>{
   services.login()
   .then(response => {    
     res.json(response.rows);    
-  });   
-});
-
+  })
+    .catch(err=>{
+        console.error(err);
+        res.status(400).send(err);
+    })
+  })
+  
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 4000;
