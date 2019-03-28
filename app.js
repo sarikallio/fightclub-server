@@ -34,9 +34,9 @@ app.post('/foods', function (req, res, next){
 
 app.get('/fights', function (req, res, next) {
   services.fights()    
-    .then(resp => {    
-      res.send(resp);    
-    })
+  .then(response => {    
+    res.json(response.rows);    
+  })
     .catch(err=>{
         console.error(err);
         res.status(400).send(err);
