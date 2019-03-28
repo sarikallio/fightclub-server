@@ -34,11 +34,14 @@ app.post('/foods', function (req, res, next){
 
 app.get('/fights', function (req, res, next) {
   services.fights()    
-    .then(response => {    
-      res.json(response.rows);    
-    });   
-  });
-
+    .then(resp => {    
+      res.send(resp);    
+    })
+    .catch(err=>{
+        console.error(err);
+        res.status(400).send(err);
+    })
+  })
 app.get('/feedback', function (req, res, next) {
   services.feedback()    
     .then(response => {    
