@@ -88,6 +88,13 @@ app.delete('/foods/:id', (req, res, next) => {
     })
   });
 
+app.get('/login', (req, res, next)=>{
+  services.login()
+  .then(response => {    
+    res.json(response.rows);    
+  });   
+});
+
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 4000;
